@@ -30,22 +30,59 @@
 
 ```plaintext
 /src
-  └── com
-      ├── entities
-      │    ├── Car.java
-      │    └── User.java
-      ├── controller
-      │    └── UserController.java
-      └── view
-           └── servlet
-                ├── SvEdit.java
-                ├── SvAddCar.java
-                ├── SvDeleteCar.java
-                └── AddOwnerServlet.java
-/webapp
-  ├── editCar.jsp
-  ├── addCar.jsp
-  ├── listCars.jsp
-  ├── error.jsp
-  └── WEB-INF
-       └── web.xml
+  └── com/
+        ├── controller/
+        │   ├── MainController.java
+        │   └── user/
+        │       └── UserController.java
+        │
+        ├── entities/
+        │   ├── Car.java
+        │   ├── Payment.java
+        │   ├── PaymentFilter.java
+        │   └── User.java
+        │
+        ├── hashPassword/
+        │   └── SecurePassword.java
+        │
+        ├── main/
+        │   └── Main.java
+        │
+        ├── model/
+        │   ├── config/
+        │   │   └── DatabaseConnection.java
+        │   └── user/
+        │       └── ModelUserDataBase.java
+        │
+        ├── utils/
+        │   ├── FileUtils.java
+        │   ├── TerminalUtils.java
+        │   └── configs/
+        │       ├── Configurations.java
+        │       └── DatabaseConfigurations.java
+        │
+        └── view/
+            ├── MainView.java
+            ├── servlet/
+            │   ├── SvLogin.java
+            │   ├── SVRegister.java
+            │   ├── SvUser.java
+            │   └── car/
+            │       ├── SVAddCar.java
+            │       ├── SVDeleteCar.java
+            │       └── SvEdit.java
+            └── user/
+                └── UserView.java
+webapp/
+├── META-INF/
+├── WEB-INF/
+│   └── web.xml
+├── Car/
+│   ├── addCar.jsp
+│   └── editCar.jsp
+├── Styles.css
+├── error.jsp
+├── index.html
+├── login.jsp
+├── register.jsp
+└── userView.jsp
