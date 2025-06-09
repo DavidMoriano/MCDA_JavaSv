@@ -1,0 +1,43 @@
+# --- Java general ---
+*.class
+*.log
+*.war
+*.jar
+*.ear
+*.env
+
+# Compilación
+/target/
+/bin/
+/out/
+
+# --- IDEs ---
+## Eclipse
+.settings/
+.project
+.classpath
+
+## IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# --- Sistema operativo ---
+.DS_Store
+Thumbs.db
+
+# --- Maven ---
+/.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+
+# --- Tomcat ---
+/logs/
+/temp/
+/work/
+/webapps/
+
+# --- Otros ---
+/build/
