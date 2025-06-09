@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,20 +24,21 @@ public class SvUser extends HttpServlet {
 	public SvUser() {
 		super();
 		try {
-			this.userController = new UserController(); 
+			this.userController = new UserController();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		User user = new User();
-		user.setId_user(5);
-		user.setName("manu");
-		user.setuUID("b47b60f8-6c94-4529-8ba9-9baedb238e55");
-		user.setPassword("$2a$10$pDAqjIlxZQuwVGYlAgr1/e/PRvXQsZF/s.hIhMkaZNlYWrlgbKdj6");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			request.getRequestDispatcher("SvLogin").forward(request, response);
+			return;
+		}
+		User user = (User) session.getAttribute("user");
 
 		try {
 			List<Car> carList = userController.getAllCars(user);
@@ -51,7 +53,8 @@ public class SvUser extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

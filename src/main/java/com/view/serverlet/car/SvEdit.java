@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -29,12 +30,12 @@ public class SvEdit extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int id_car = Integer.parseInt(request.getParameter("id_car"));
-
-            User user = new User();
-            user.setId_user(5);
-            user.setName("manu");
-            user.setuUID("b47b60f8-6c94-4529-8ba9-9baedb238e55");
-            user.setPassword("$2a$10$pDAqjIlxZQuwVGYlAgr1/e/PRvXQsZF/s.hIhMkaZNlYWrlgbKdj6");
+            HttpSession session = request.getSession(false);
+    		if (session == null) {
+    			request.getRequestDispatcher("login").forward(request, response);
+    			return;
+    		}
+    		User user = (User) session.getAttribute("user");
 
             List<Car> carList = userController.getAllCars(user);
 

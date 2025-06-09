@@ -37,6 +37,7 @@ public class MainController implements IMainController {
 	public User login(User user) {
 		User userDB = modelDataBase.login(user);
 		if (SecurePassword.checkPassword(user.getPassword(), userDB.getPassword())) {
+			userDB.setPassword(null);
 			return userDB;
 		} else {
 			return null;

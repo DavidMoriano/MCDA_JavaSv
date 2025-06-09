@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -59,6 +61,10 @@ public class SvLogin extends HttpServlet {
 
 			User userToLog = mainController.login(user);
 			if (userToLog != null) {
+				HttpSession session = request.getSession(true);
+				session.setAttribute("user", userToLog);
+				
+
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("SvUser");
 				requestDispatcher.forward(request, response);
 				return;
